@@ -19,9 +19,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMovement = joystick.Horizontal * runSpeed; // -1 : 1, D = 1, A = -1
-        animator.SetFloat("Speed", horizontalMovement);
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMovement));
 
-        if(joystick.Vertical >= .2f)
+        //tries to play animation when speed >= 0.01 right: speed = 1 * something = 10
+        //                                           left: speed = -1 * something = -10 ; abs value = 10
+
+        if(joystick.Vertical >= .5f)
         {
             jump = true;
             animator.SetBool("isJumping", true);
